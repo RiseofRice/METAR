@@ -129,6 +129,6 @@ dmypy.json
 .pyre/
 
 # files
-header.py
+headers.py
 __pycache__/
 .vscode/
