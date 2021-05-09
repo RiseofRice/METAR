@@ -2,8 +2,9 @@ from sys import argv
 import requester
 import json
 import requests
+import headers
 
-headers = {"X-API-Key": "69d7644418204967b4ff79fab3"}
+headers = headers.headers
 
 
 def requesting(ICAO):
@@ -24,23 +25,18 @@ def get_metar_info(ICAO):
         print(data)
         print("\n\n")
 
-    data = data['data'][0].split(" ")
-    x = 0
-    l = []
-    for i in data:
-        x = x + 1
-        l.append(i)
-        if x == 3:
+    data = data['data'][0].split()
+    # print(data)
 
-            print(f"{l[0]}\t\t{l[1]}\t\t{l[2]}")
-
-            l = []
-            x = 0
+    for i in range(0, len(data), 3):
+        print('\t\t'.join(data[i:i+3]))
     print("\n\n")
-
+    
 
 if __name__ == "__main__":
     if len(argv) > 1:
         get_metar_info(argv[1])
     else:
         print("you need to enter an ICAO code")
+
+
